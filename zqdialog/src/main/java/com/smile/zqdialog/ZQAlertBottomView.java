@@ -101,9 +101,9 @@ public class ZQAlertBottomView extends Dialog implements View.OnClickListener {
             @Override
             public void onClick(View view) {
                 view.getTag();
+                dismiss();
                 if (null != itemClickListener) {
                     itemClickListener.onItemClick((Integer) view.getTag());
-                    dismiss();
                 }
             }
         });

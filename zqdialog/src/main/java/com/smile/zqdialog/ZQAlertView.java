@@ -45,15 +45,17 @@ public class ZQAlertView extends Dialog implements View.OnClickListener {
     public void onClick(View view) {
         int i = view.getId();
         if (i == R.id.btn_ok) {
+            dismiss();
             if (null != okListener) {
                 okListener.onOk();
             }
         } else if (i == R.id.btn_cancel) {
+            dismiss();
             if (null != cancelBtnListener) {
                 cancelBtnListener.onCancel();
             }
         }
-        dismiss();
+
     }
 
     public ZQAlertView setText(String content) {

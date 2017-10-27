@@ -41,10 +41,10 @@ public class ZQShowView extends Dialog implements View.OnClickListener {
     public void onClick(View view) {
         int i = view.getId();
         if (i == R.id.btn_ok) {
+            dismiss();
             if (null != okListener) {
                 okListener.onOk();
             }
-            dismiss();
         }
     }
 
