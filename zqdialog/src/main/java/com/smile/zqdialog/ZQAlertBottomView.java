@@ -83,11 +83,35 @@ public class ZQAlertBottomView extends Dialog implements View.OnClickListener {
         return this;
     }
 
-    public ZQAlertBottomView setItemsText(List<String> itemsText) {
+    public ZQAlertBottomView setItemsText(List<ItemText> itemsText) {
         for (int i = 0; i < itemsText.size(); i++) {
-            addSelActionView(itemsText.get(i), i);
+            addSelActionView(itemsText.get(i).getItemText(), i);
         }
         return this;
+    }
+
+    private void addSelActionView(final ItemText itemText) {
+        LinearLayout.LayoutParams lpFw = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        lpFw.setMargins(0, 9, 0, 0);
+        Button button = new Button(getContext());
+        button.setText(itemText.getItemText());
+        button.setTextColor(Color.BLACK);
+        button.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
+        button.setGravity(Gravity.CENTER);
+//        button.setTag(position);
+        button.setBackgroundResource(R.drawable.bg_btn_round_white);
+        lySelAction.addView(button, lpFw);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+                if (null != itemClickListener) {
+                    itemClickListener.onItemClick(itemText);
+                }
+            }
+        });
     }
 
     //添加选项按钮
