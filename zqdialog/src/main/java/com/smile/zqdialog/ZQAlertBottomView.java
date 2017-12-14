@@ -14,16 +14,17 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import java.util.List;
+
 /**
- * Created by Smile on 2017/9/25.
+ * @author Smile
+ * @date 2017/9/25
  */
 
 public class ZQAlertBottomView extends Dialog implements View.OnClickListener {
 
-    private Button btnCancel;
     private LinearLayout lySelAction;
 
-    private String[] itemsText;
     private OnCancelBtnListener cancelBtnListener = null;
     private OnItemClickListener itemClickListener = null;
     private View root;
@@ -32,7 +33,7 @@ public class ZQAlertBottomView extends Dialog implements View.OnClickListener {
     public ZQAlertBottomView(@NonNull Context context) {
         super(context, R.style.BottomDialog);
         root = LayoutInflater.from(getContext()).inflate(R.layout.zqdilog_alert_bottom_view, null, false);
-        btnCancel = root.findViewById(R.id.btn_cancel);
+        Button btnCancel = root.findViewById(R.id.btn_cancel);
         lySelAction = root.findViewById(R.id.ly_sel_action);
 
         btnCancel.setOnClickListener(this);
@@ -76,18 +77,24 @@ public class ZQAlertBottomView extends Dialog implements View.OnClickListener {
     }
 
     public ZQAlertBottomView setItemsText(String[] itemsText) {
-        this.itemsText = itemsText;
         for (int i = 0; i < itemsText.length; i++) {
             addSelActionView(itemsText[i], i);
         }
         return this;
     }
 
+    private ZQAlertBottomView setItemsText(List<String> itemsText) {
+        for (int i = 0; i < itemsText.size(); i++) {
+            addSelActionView(itemsText.get(i), i);
+        }
+        return this;
+    }
+
     //添加选项按钮
     private void addSelActionView(String text, int position) {
-        LinearLayout.LayoutParams LP_FW = new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams lpFw = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        LP_FW.setMargins(0, 9, 0, 0);
+        lpFw.setMargins(0, 9, 0, 0);
         Button button = new Button(getContext());
         button.setText(text);
         button.setTextColor(Color.BLACK);
@@ -95,7 +102,7 @@ public class ZQAlertBottomView extends Dialog implements View.OnClickListener {
         button.setGravity(Gravity.CENTER);
         button.setTag(position);
         button.setBackgroundResource(R.drawable.bg_btn_round_white);
-        lySelAction.addView(button, LP_FW);
+        lySelAction.addView(button, lpFw);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
