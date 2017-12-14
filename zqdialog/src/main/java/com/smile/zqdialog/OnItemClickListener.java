@@ -6,6 +6,4 @@ package com.smile.zqdialog;
 
 public interface OnItemClickListener {
     void onItemClick(int position);
-
-    void onItemClick(ItemText itemText);
 }
