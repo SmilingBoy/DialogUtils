@@ -83,7 +83,7 @@ public class ZQAlertBottomView extends Dialog implements View.OnClickListener {
         return this;
     }
 
-    private ZQAlertBottomView setItemsText(List<String> itemsText) {
+    public ZQAlertBottomView setItemsText(List<String> itemsText) {
         for (int i = 0; i < itemsText.size(); i++) {
             addSelActionView(itemsText.get(i), i);
         }
