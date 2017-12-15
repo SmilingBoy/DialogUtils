@@ -9,5 +9,5 @@ Dialog常用样式封装
 	}
   
   	dependencies {
-	       compile 'com.github.SmilingBoy:DialogUtils:v1.5.2'
+	       compile 'com.github.SmilingBoy:DialogUtils:v1.5.4'
 	}
